@@ -1,0 +1,28 @@
+name: CI
+on: [push, pull_request]
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchains@v1
+        with:
+          toolchain: stable
+          components: rustfmt, clippy
+      - run: cargo clippy --all-features
+      - run: cargo fmt -- --check
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - run: cargo run -- data/*
+      - run: find data -type f | cargo run -- --from-file -
+      - run: cd data && cargo run -- --from-file file_list.txt
