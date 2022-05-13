@@ -1,0 +1,7 @@
+die_ISO-8859-1.txt
+file_list.txt
+harpers_ASCII.txt
+olaf_Windows-1251.txt
+portugal_ISO-8859-1.txt
+shisei_UTF-8.txt
+yan_BIG-5.txt
