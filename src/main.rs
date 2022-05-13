@@ -85,11 +85,11 @@ fn combine(files: Vec<PathBuf>) -> Result<()> {
 fn print_result(guesser: &mut EncodingDetector, fpath: Option<PathBuf>) {
     let is_ascii = !guesser.feed(&[], true);
     let (encoding, is_good) = guesser.guess_assess(None, true);
-    let enc_name = if is_ascii {"ASCII"} else {encoding.name()};
+    let enc_name = if is_ascii { "ASCII" } else { encoding.name() };
     let q = if is_ascii || is_good { "" } else { "?" };
     if let Some(p) = fpath {
         println!("{}{}\t{}", q, enc_name, p.to_string_lossy());
-    }else {
+    } else {
         println!("{}{}", q, enc_name);
     }
 }
